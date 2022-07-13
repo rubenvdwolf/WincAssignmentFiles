@@ -7,13 +7,12 @@ import zipfile
 
 
 def clean_cache():
-    path = "/Users/ruben/Documents/Winc/files"
-    path_cache = "/Users/ruben/Documents/Winc/files/cache"
+    path = os.getcwd()
+    path_cache = os.path.join(path, "cache")
     if os.path.exists(path_cache) == True:
         for f in os.listdir(path_cache):
             os.remove(os.path.join(path_cache, f))
     else:
-        os.chdir(path)
         os.mkdir("cache")
 
 
@@ -24,10 +23,10 @@ def cache_zip(zip_file_path, cache_dir_path):
 
 def cached_files():
     all_files = []
-    os.chdir("/Users/ruben/Documents/Winc/files/cache")
     path = os.getcwd()
-    for f in os.listdir(path):
-        all_files.append(os.path.abspath(f))
+    path_cache = os.path.join(path, "cache")
+    for f in os.listdir(path_cache):
+        all_files.append(path_cache + "/" + f)
     return all_files
 
 
